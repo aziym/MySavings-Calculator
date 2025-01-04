@@ -94,9 +94,8 @@ const SavingsCalculator = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-blue-900 p-4 md:p-8 transition-all duration-300">
-      {/* Dark Mode Toggle */}
-      <div className="sticky top-0 z-50 flex justify-end mb-4">
+    <div className="fixed inset-0 w-full min-h-screen overflow-auto bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-blue-900">
+      <div className="absolute top-4 right-4 z-50">
         <button
           className="p-2 hover:rotate-90 transition-transform duration-300 bg-white dark:bg-gray-800 shadow-lg
                     rounded-full w-10 h-10 flex items-center justify-center"
@@ -110,7 +109,7 @@ const SavingsCalculator = () => {
         </button>
       </div>
 
-      <div className="max-w-3xl mx-auto">
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-2xl p-6 space-y-8 transition-all duration-300
                       hover:shadow-xl transform hover:-translate-y-1 border border-purple-100 dark:border-blue-900">
           {/* Header */}
@@ -195,59 +194,58 @@ const SavingsCalculator = () => {
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {calculations.map((calc, index) => (
                   <div
-                  key={index}
-                  className={`relative bg-gray-900/90 dark:bg-gray-800/90 
-                            rounded-xl p-6 transform transition-all duration-300 hover:scale-105 shadow-lg
-                            hover:shadow-xl border ${getCardBorderColor(calc.percentageOfTarget)}`}
-                  onClick={() => setActiveTab(index)}
-                >
-                  <div className="absolute top-0 left-0 h-1 w-full rounded-t-xl overflow-hidden">
-                    <div 
-                      className={`h-full ${getProgressColor(calc.percentageOfTarget)} transition-all duration-500`}
-                      style={{ width: `${calc.percentageOfTarget}%` }}
-                    />
-                  </div>
+                    key={index}
+                    className={`relative bg-gray-900/90 dark:bg-gray-800/90 
+                              rounded-xl p-6 transform transition-all duration-300 hover:scale-105 shadow-lg
+                              hover:shadow-xl border ${getCardBorderColor(calc.percentageOfTarget)}`}
+                  >
+                    <div className="absolute top-0 left-0 h-1 w-full rounded-t-xl overflow-hidden">
+                      <div 
+                        className={`h-full ${getProgressColor(calc.percentageOfTarget)} transition-all duration-500`}
+                        style={{ width: `${calc.percentageOfTarget}%` }}
+                      />
+                    </div>
 
-                  <div className="mb-4">
-                    <h4 className="text-xl font-bold text-white mb-2 flex items-center justify-between">
-                      {calc.rate}% Savings
-                      <span className={`text-xs px-2 py-1 rounded-full ${getBadgeColor(calc.achievesTarget)}`}>
-                        {calc.achievesTarget ? 'Reaches Target' : 'Below Target'}
-                      </span>
-                    </h4>
-                    <p className="text-lg text-purple-400 font-semibold">
-                      Monthly Savings: {formatRM(calc.savings)}
-                    </p>
-                    <p className="text-sm text-gray-300">
-                      Total After {duration} months: {formatRM(calc.totalSavingsAtEnd)}
-                      <br />
-                      ({calc.percentageOfTarget.toFixed(1)}% of target)
-                    </p>
-                  </div>
+                    <div className="mb-4">
+                      <h4 className="text-xl font-bold text-white mb-2 flex items-center justify-between">
+                        {calc.rate}% Savings
+                        <span className={`text-xs px-2 py-1 rounded-full ${getBadgeColor(calc.achievesTarget)}`}>
+                          {calc.achievesTarget ? 'Reaches Target' : 'Below Target'}
+                        </span>
+                      </h4>
+                      <p className="text-lg text-purple-400 font-semibold">
+                        Monthly Savings: {formatRM(calc.savings)}
+                      </p>
+                      <p className="text-sm text-gray-300">
+                        Total After {duration} months: {formatRM(calc.totalSavingsAtEnd)}
+                        <br />
+                        ({calc.percentageOfTarget.toFixed(1)}% of target)
+                      </p>
+                    </div>
 
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center p-3 bg-gray-800/50 rounded-lg">
-                      <span className="text-gray-300">Monthly Budget:</span>
-                      <span className="font-semibold text-gray-100">{formatRM(calc.monthly)}</span>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-gray-800/50 rounded-lg">
-                      <span className="text-gray-300">Weekly Budget:</span>
-                      <span className="font-semibold text-gray-100">{formatRM(calc.weekly)}</span>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-gray-800/50 rounded-lg">
-                      <span className="text-gray-300">Daily Budget:</span>
-                      <span className="font-semibold text-gray-100">{formatRM(calc.daily)}</span>
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center p-3 bg-gray-800/50 rounded-lg">
+                        <span className="text-gray-300">Monthly Budget:</span>
+                        <span className="font-semibold text-gray-100">{formatRM(calc.monthly)}</span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-gray-800/50 rounded-lg">
+                        <span className="text-gray-300">Weekly Budget:</span>
+                        <span className="font-semibold text-gray-100">{formatRM(calc.weekly)}</span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-gray-800/50 rounded-lg">
+                        <span className="text-gray-300">Daily Budget:</span>
+                        <span className="font-semibold text-gray-100">{formatRM(calc.daily)}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 };
 
-export default SavingsCalculator;
+export default SavingsCalculator
