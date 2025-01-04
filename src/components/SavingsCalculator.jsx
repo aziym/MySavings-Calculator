@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Target, Calendar, CircleDollarSign, Coins, Moon, Sun, TrendingUp } from 'lucide-react';
+import { Target, Calendar, CircleDollarSign, Coins, Moon, Sun, TrendingUp, Copyright } from 'lucide-react';
 
 const SavingsCalculator = () => {
   const [targetAmount, setTargetAmount] = useState('');
@@ -243,9 +243,22 @@ const SavingsCalculator = () => {
             </div>
           )}
         </div>
+
+        {/* Copyright Component */}
+        <div className="mt-8 mb-4 text-center">
+          <div className="inline-flex items-center justify-center space-x-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm 
+                        px-4 py-2 rounded-full shadow-md transition-all duration-300 hover:shadow-lg">
+            <Copyright className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              <span className="font-semibold">{new Date().getFullYear()}</span>
+              <span className="mx-1">·</span>
+              <span>Created by Azim Bakri</span>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default SavingsCalculator
+export default SavingsCalculator;
